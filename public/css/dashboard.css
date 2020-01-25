@@ -16,3 +16,7 @@
 i,a{
   cursor:pointer;'
 }
+
+#mapid, #nmapid {
+	height: 400px;
+}

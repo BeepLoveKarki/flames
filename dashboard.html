@@ -11,10 +11,13 @@
     <script src="public/vendor/bootstrap-4.1/bootstrap.min.js"></script>
     <script src="public/vendor/bootstrap-4.1/popper.min.js"></script>
     <link href="public/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-    <link rel="stylesheet" type="text/css" href="public/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	
-	<link rel="stylesheet" type="text/css" href="public/vendor/css-hamburgers/hamburgers.min.css">
-	<link rel="stylesheet" type="text/css" href="public/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="public/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>	
+	<link rel="stylesheet" type="text/css" href="public/vendor/css-hamburgers/hamburgers.min.css"/>
+	<link rel="stylesheet" type="text/css" href="public/vendor/select2/select2.min.css"/>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+	<script src="public/js/aws-sdk.js"></script>
+	<script src="public/js/paho-mqtt.js"></script>
 	<script src="public/js/dashboard.js"></script>
 </head>
 <body id="page-top">
@@ -31,7 +34,7 @@
                   <li class="nav-item active" style="margin-top:20px;" id="1">
                     <a class="nav-link" onclick="show(1)">
                       <i class="fa fa-fw fa-bolt"></i>
-                      <span>Meters</span>
+                      <span>Dashboard</span>
                     </a>
                   </li>
                   
@@ -79,9 +82,34 @@
 						<div class="col-sm-3 col-md-3 cold-xs-3">
 						</div>
 					  </div>
-                             <div class="tables">
-                               <!--map-->
-                            </div>
+                              <div id="mapid" style="margin-bottom:20px;"></div>
+							   <h1 id="head">Energy Status</h1>
+							   <p id="pp"> Total Power Consumed: </p>
+							   <div id="nmapid"></div>
+							   
+					
+							  <div class="row">
+							   <div class="col-sm-4 col-md-4 cold-xs-4">
+							   <br/>
+						          <h5>Time</h5>
+                                  <input class="form-control" type="datetime-local" id="from">
+								  to
+								  <input class="form-control" type="datetime-local" id="from">
+						       </div>
+							   
+							   <div class="col-sm-4 col-md-4 cold-xs-4">
+							   <br/>
+						          <h5>Location</h5>
+                                  <input class="form-control" type="text" id="from">
+						       </div>
+							   
+							   <div class="col-sm-4 col-md-4 cold-xs-4">
+							   <br/><br/>
+						          <button type="button" class="btn btn-primary btn-lg" >Filter</button>
+						       </div>
+							  
+							  </div>
+							  
 					 </section>  
 					 
 					 <section id="data2" style="display:none;">
@@ -110,7 +138,7 @@
 							   
 							   <tbody class="bodyt1">
 							          <td>Biplab Karki</td>
-                                      <td><a href="https://maps.google.com/?q=10,10" target="_blank">Chandragiri, 14</a></td>
+                                      <td><a href="https://maps.google.com/?q=27.68837,85.26745" target="_blank">Chandragiri, 14</a></td>
 									  <td>9843437928</td>
 									  <td>biplabkarki04@gmail.com</td>
 									  <td>biplab</td>
