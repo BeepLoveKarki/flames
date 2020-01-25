@@ -2,6 +2,7 @@ function login(){
   if($("#uname").val().length==0 || $("#upass").val().length==0){
      $(".p-t").text("Either of the inputs is empty");
   }else{
+	  window.location.replace("/dashboard.html")
   /*$.post("/adminlogin",{
 	  username:$("#uname").val(),
 	  password:$("#upass").val()

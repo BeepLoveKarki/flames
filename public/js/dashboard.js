@@ -47,11 +47,8 @@ function nmapit(){
 
 
 function getdatas(){
-  /*$.get("https://9g8j2qiqdc.execute-api.us-east-1.amazonaws.com/meter").then((data,status)=>{
-    console.log(data);
-  });*/
-  data= '{"status": "done", "data": "[(1, 123456789, 0.0003125, 21.345678, 85.1234567, datetime.datetime(2020, 1, 25, 10, 58, 11)), (2, 123456780, 0.009375, 21.345678, 85.1234567, datetime.datetime(2020, 1, 25, 10, 58, 45)), (3, 123456787, 0.0015625, 21.345678, 85.1234567, datetime.datetime(2020, 1, 25, 10, 59, 6)), (4, 123456007, 0.015625, 21.345678, 85.1234567, datetime.datetime(2020, 1, 25, 10, 59, 23)), (5, 123456789, 0.0003125, 21.345678, 85.1234567, datetime.datetime(2020, 1, 25, 10, 58, 11))]"}';
-  d=JSON.parse(data);
+  $.get("https://b61vdb8jgk.execute-api.us-east-1.amazonaws.com/meter").then((data,status)=>{
+  d=JSON.parse(JSON.stringify(data));
   let e=d["data"].slice(1,d["data"].length-1);
   let f=e.split("\),");
   let g= new Array();
@@ -67,9 +64,9 @@ function getdatas(){
   
   let total=0.0;
   for(let i=0;i<g.length;i++){
+	total+=parseFloat(g[i]["unit"]);
     for(let j=i+1;j<g.length;j++){
 	  if(g[i]["uid"]==g[j]["uid"]){
-	    total+=parseFloat(g[i]["unit"]);
 		g[i]["unit"]=(parseFloat(g[i]["unit"])+parseFloat(g[j]["unit"])).toString();
 		g.splice(j,1);
 	  }
@@ -92,6 +89,7 @@ function getdatas(){
   L.polygon(h).addTo(nmymap);
   nmymap.flyTo(h[0], 11);
   $("#pp").append(total.toString()+" KWh");
+  });
 }
 
 
